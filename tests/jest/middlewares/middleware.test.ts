@@ -1,6 +1,6 @@
 import { composeMiddleware, createMiddleware } from '../../../src/middlewares/middleware';
 
-describe('.createMiddleware', () => {
+describe('createMiddleware', () => {
   it('returns the param as it is', () => {
     const middleware = jest.fn();
     const value = createMiddleware(middleware);
@@ -8,7 +8,7 @@ describe('.createMiddleware', () => {
   });
 });
 
-describe('.composeMiddleware', () => {
+describe('composeMiddleware', () => {
   it('defaults to a curry function without params', () => {
     const value = composeMiddleware()(123);
     expect(value).toBe(123);
