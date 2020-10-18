@@ -11,7 +11,8 @@ describe('.fetcher', () => {
   describe('calls the fetch client', () => {
     it('with the global client', async () => {
       await client(path);
-      expect(fetchMock.mock.calls?[0][0].method).toEqual('GET');
+      // @ts-ignore
+      expect(fetchMock.mock.calls[0][0].method).toEqual('GET');
     });
 
     it('with the provided client', async () => {

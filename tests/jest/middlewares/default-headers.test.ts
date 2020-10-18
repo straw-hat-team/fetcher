@@ -17,7 +17,9 @@ describe('.json', () => {
 
   it('sets the json headers', async () => {
     await client(path);
+    // @ts-ignore
     expect(fetchMock.mock.calls[0][0].headers.get('Else')).toBe('123');
+    // @ts-ignore
     expect(fetchMock.mock.calls[0][0].headers.get('Something')).toBe('123');
   });
 });
