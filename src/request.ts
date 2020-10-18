@@ -10,7 +10,7 @@ export interface HttpRequest extends RequestInit {
 }
 
 /**
- * Transform a HttpRequest into an native Request
+ * Transform a HttpRequest into an native Request.
  * @param request
  */
 export function asNativeRequest(request: HttpRequest) {

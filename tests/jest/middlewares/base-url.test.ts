@@ -3,22 +3,30 @@ import { fetcher } from '../../../src/index';
 import { baseUrl } from '../../../src/middlewares/base-url';
 
 describe('baseUrl', () => {
-  const client = fetcher({ middleware: baseUrl('http://api.acmec.com/v2') });
-  const path = '/pepeg';
-
   afterEach(() => fetchMock.resetMocks());
 
-  it('sets the base url to the path', async () => {
-    await client(path);
+  it('adds the base url to the path', async () => {
+    const client = fetcher({ middleware: baseUrl('http://api.acmec.com/v2') });
+    await client('pepeg');
+
     // @ts-ignore
     expect(fetchMock.mock.calls[0][0].url).toBe('http://api.acmec.com/v2/pepeg');
   });
 
   it('removes the backslash from the base url', async () => {
-    const localClient = fetcher({ middleware: baseUrl('http://api.acmec.com/v2/') });
+    const client = fetcher({ middleware: baseUrl('http://api.acmec.com/v2/') });
+    await client('/pepeg');
 
-    await localClient(path);
     // @ts-ignore
     expect(fetchMock.mock.calls[0][0].url).toBe('http://api.acmec.com/v2/pepeg');
   });
+
+  it('removes the backslash from the path', async () => {
+    const client = fetcher({ middleware: baseUrl('http://api.acmec.com/v2/') });
+    await client('/pepeg');
+
+    // @ts-ignore
+    expect(fetchMock.mock.calls[0][0].url).toBe('http://api.acmec.com/v2/pepeg');
+  });
+  ``;
 });
