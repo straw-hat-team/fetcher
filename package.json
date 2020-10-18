@@ -1,6 +1,6 @@
 {
   "name": "@straw-hat/fetcher",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Simple HTTP Client",
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "test": "jest",
     "prepublishOnly": "yarn build"
   },
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
