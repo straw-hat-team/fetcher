@@ -2,24 +2,26 @@ import fetchMock from 'jest-fetch-mock';
 import { fetcher } from '../../src/index';
 import { composeMiddleware } from '../../src/middlewares/middleware';
 
-describe('.fetcher', () => {
-  const client = fetcher();
-  const path = 'http://app.acmec.com';
+const path = 'http://app.acmec.com';
 
+describe('fetcher', () => {
   afterEach(() => fetchMock.resetMocks());
 
-  describe('calls the fetch client', () => {
-    it('with the global client', async () => {
+  describe('calling the fetch client', () => {
+    it('using the global client', async () => {
+      const client = fetcher();
+
       await client(path);
+
       // @ts-ignore
       expect(fetchMock.mock.calls[0][0].method).toEqual('GET');
     });
 
-    it('with the provided client', async () => {
+    it('using the provided client', async () => {
       const fetchSpy = jest.fn();
-      await fetcher({
-        fetch: fetchSpy,
-      })(path);
+      const client = fetcher({ fetch: fetchSpy });
+
+      await client(path);
 
       expect(fetchSpy).toHaveBeenCalled();
     });
@@ -27,9 +29,10 @@ describe('.fetcher', () => {
 
   it('calls the middleware', async () => {
     const middleware = jest.fn((next) => next);
-    fetcher({
-      middleware: composeMiddleware(middleware),
-    });
+    const client = fetcher({ middleware: composeMiddleware(middleware) });
+
+    await client(path);
+
     expect(middleware).toBeCalled();
   });
 });
