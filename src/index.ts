@@ -32,7 +32,7 @@ export function fetcher<T = unknown>(opts: ClientConfiguration = {}): Fetcher<T>
 
   const executeRequest = compose(dispatch, withDefaults);
 
-  return (path: Path, options: Partial<HttpRequest> = {}) => {
+  return (path: Path, options: Partial<Omit<HttpRequest, 'url'>> = {}) => {
     return executeRequest({
       ...options,
       url: path,

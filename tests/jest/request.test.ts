@@ -1,6 +1,6 @@
 import { cloneRequest, HttpRequest } from '../../src/request';
 
-describe('.cloneRequest', () => {
+describe('cloneRequest', () => {
   it('clones the http client request into a native request', () => {
     const request: HttpRequest = {
       context: {
