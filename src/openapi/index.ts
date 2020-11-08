@@ -1,3 +1,12 @@
+export type OperationParams<Path = unknown, Query = unknown, Body = unknown> = {
+  path?: Path;
+  query?: Query;
+  body?: Body;
+  options?: {
+    signal?: AbortSignal;
+  };
+};
+
 export function replacePathParams(urlPath: string, pathParams: Record<string, any> = {}) {
   return Object.entries(pathParams).reduce(
     (theUrlPath, [name, value]) => theUrlPath.replaceAll(`{${name}}`, value),
