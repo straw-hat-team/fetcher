@@ -69,4 +69,3 @@ import client from './myHttpClient';
 - [Middlewares](./docs/middlewares.md)
 - [Polyfills](./docs/polyfills.md)
 - [OpenAPI](./docs/openapi.md)
-
