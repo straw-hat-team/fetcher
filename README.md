@@ -67,6 +67,6 @@ import client from './myHttpClient';
 ## What is next?
 
 - [Middlewares](./docs/middlewares.md)
-- [Polyfills](./docs/Polyfills.md)
+- [Polyfills](./docs/polyfills.md)
 - [OpenAPI](./docs/openapi.md)
 
