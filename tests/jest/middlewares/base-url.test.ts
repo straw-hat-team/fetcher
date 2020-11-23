@@ -28,5 +28,4 @@ describe('baseUrl', () => {
     // @ts-ignore
     expect(fetchMock.mock.calls[0][0].url).toBe('http://api.acmec.com/v2/pepeg');
   });
-  ``;
 });
