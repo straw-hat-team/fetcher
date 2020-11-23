@@ -7,7 +7,7 @@ export type FetcherErrorOptions = {
   url: string;
 };
 
-class FetcherError extends Error {
+export class FetcherError extends Error {
   status: any;
   body: any;
   url: string;
