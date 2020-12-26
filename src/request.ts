@@ -1,10 +1,10 @@
-export type Context = Record<any, any>;
+export type HttpRequestContext = Record<any, any>;
 
 export interface HttpRequest<Body extends BodyInit = BodyInit> extends RequestInit {
   /**
    * A metadata object. Useful for pass some metadata cross middleware.
    */
-  context: Context;
+  context: HttpRequestContext;
   headers: Headers;
   url: string;
   body?: Body;
