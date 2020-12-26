@@ -27,6 +27,8 @@ For this example we will using `baseUrl` middleware.
 ```javascript
 // myHttpClient.js
 import { baseUrl } from '@straw-hat/fetcher/dist/middlewares/base-url';
+import { json } from '@straw-hat/fetcher/dist/middlewares/json';
+import { errorHandler } from '@straw-hat/fetcher/dist/middlewares/error-handler';
 import { defaultHeaders } from '@straw-hat/fetcher/dist/middlewares/default-headers';
 import { composeMiddleware } from '@straw-hat/fetcher/dist/middlewares/middleware';
 import { fetcher } from '@straw-hat/fetcher';
@@ -38,7 +40,12 @@ const client = fetcher({
       'User-Agent': 'MyApp/1.0',
     }),
     // Concatenate the base url with the current URL.
-    baseUrl('http://api.myapp.com/v1')
+    baseUrl('http://api.myapp.com/v1'),
+    // - Serialize body into JSON and add content type application/json
+    // - Deserialize JSON responses
+    json(),
+    // Standard error handler from fetcher
+    errorHandler()
   ),
 });
 
