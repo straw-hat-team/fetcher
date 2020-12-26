@@ -23,9 +23,9 @@ function withDefaults(request: Partial<HttpRequest>): Partial<HttpRequest> {
   };
 }
 
-export type Fetcher<T = Response> = (path: string, options?: Partial<HttpRequest>) => Promise<T>;
+export type Fetcher<T = Response, P = HttpRequest> = (path: string, options?: Partial<P>) => Promise<T>;
 
-export function fetcher<T = Response>(opts: ClientConfiguration = {}): Fetcher<T> {
+export function fetcher<T = Response, P = HttpRequest>(opts: ClientConfiguration = {}): Fetcher<T, P> {
   const dispatchRequest = dispatcher(opts.fetch);
 
   const dispatch = opts.middleware ? opts.middleware(dispatchRequest) : dispatchRequest;
