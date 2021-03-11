@@ -30,10 +30,11 @@ import { baseUrl } from '@straw-hat/fetcher/dist/middlewares/base-url';
 import { json } from '@straw-hat/fetcher/dist/middlewares/json';
 import { errorHandler } from '@straw-hat/fetcher/dist/middlewares/error-handler';
 import { defaultHeaders } from '@straw-hat/fetcher/dist/middlewares/default-headers';
+import { doNothing } from '@straw-hat/fetcher/dist/middlewares/do-nothing';
 import { composeMiddleware } from '@straw-hat/fetcher/dist/middlewares/middleware';
 import { fetcher } from '@straw-hat/fetcher';
 
-const client = fetcher({
+export const client = fetcher({
   middleware: composeMiddleware(
     // Add default headers
     defaultHeaders({
@@ -45,11 +46,12 @@ const client = fetcher({
     // - Deserialize JSON responses
     json(),
     // Standard error handler from fetcher
-    errorHandler()
+    errorHandler(),
+    // A middleware that does nothing, useful for noop default values thou
+    doNothing
   ),
 });
 
-export default client;
 ```
 
 Notice that `composeMiddleware` takes a list of middleware as parameters and

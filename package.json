@@ -1,6 +1,6 @@
 {
   "name": "@straw-hat/fetcher",
-  "version": "4.5.2",
+  "version": "4.6.0",
   "description": "Simple HTTP Client",
   "repository": {
     "type": "git",
