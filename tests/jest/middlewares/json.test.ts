@@ -43,4 +43,22 @@ describe('json', () => {
 
     expect(response).toEqual({ hello: 'world' });
   });
+
+  it('formats the response as json with custom json spec', async () => {
+    fetchMock.mockResolvedValue(
+      new Response('{"hello":"world"}', {
+        headers: { 'content-type': 'application/vnd.schemaregistry.v1+json' },
+        status: 200,
+      })
+    );
+
+    const client = fetcher<Response, HttpRequest<any>>({ middleware: json() });
+
+    const response = await client('pepeg', {
+      method: 'POST',
+      body: { hello: 'world' },
+    });
+
+    expect(response).toEqual({ hello: 'world' });
+  });
 });
