@@ -14,6 +14,10 @@ export class FetcherError extends Error {
 
   constructor(args: FetcherErrorOptions) {
     super(args.message);
+
+    // Set the prototype explicitly.
+    Object.setPrototypeOf(this, FetcherError.prototype);
+
     this.name = this.constructor.name;
     this.status = args.status;
     this.body = args.body;
