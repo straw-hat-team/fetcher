@@ -4,7 +4,7 @@ describe('getResponseBody', () => {
   it('formats the response as json', async () => {
     const body = JSON.stringify({ hello: 'world' });
     const response = new Response(body, {
-      headers: new Headers([['Content-Type', 'application/json']]),
+      headers: new Headers([['Content-Type', 'application/json; charset=utf-8;']]),
     });
     const data = await getResponseBody(response);
     expect(data).toEqual({ hello: 'world' });
