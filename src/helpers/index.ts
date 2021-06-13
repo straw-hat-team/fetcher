@@ -22,11 +22,11 @@ export function getRequestBody(body: any): BodyInit | undefined {
   return JSON.stringify(body);
 }
 
-const JSON_CONTENT_TYPE_REGEX = /^application\/(.+\+)?json$/g
+const JSON_CONTENT_TYPE_REGEX = /^application\/(.+\+)?json/
 
 export function getResponseBody(response: Response) {
   const contentType = response.headers.get('Content-Type') ?? '';
-  const isJSON = contentType.toLowerCase().match(JSON_CONTENT_TYPE_REGEX);
+  const isJSON = JSON_CONTENT_TYPE_REGEX.test(contentType.toLowerCase());
 
   if (isJSON) {
     return response.json();
